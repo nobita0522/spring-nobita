@@ -1,12 +1,10 @@
-package tech.chenx.core;
+package tech.chenx.service;
 
 /**
  * @author chenxiong
  * @email nobita0522@qq.com
- * @date 2020/8/25 14:12
+ * @date 2020/8/28 17:56
  * @description this is description about this file...
  */
-public class ClassUtil {
-
-
+public interface IExampleService {
 }
