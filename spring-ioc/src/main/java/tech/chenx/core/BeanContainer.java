@@ -101,6 +101,7 @@ public class BeanContainer {
                 container.put(clazz, clazz.getConstructor().newInstance());
             } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
                 log.error("can't invoke the constructor of [{}]", clazz.getName());
+                throw new RuntimeException(e);
             }
         }
     }
