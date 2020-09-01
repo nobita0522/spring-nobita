@@ -48,7 +48,7 @@ public class DynamicProxyUtil {
      * @return
      */
     public static Object createDynamicProxy(Object targetObject, List<? extends DefaultAspect> aspectList) {
-//        return createJDKDynamicProxy(targetObject, aspectList);
-        return createCglibDynamicProxy(targetObject, aspectList);
+        return createJDKDynamicProxy(targetObject, aspectList);
+//        return createCglibDynamicProxy(targetObject, aspectList);
     }
 }

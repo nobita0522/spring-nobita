@@ -29,16 +29,23 @@ public class AspectChainMethodInterceptor implements MethodInterceptor {
 
     @Override
     public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
-        for (DefaultAspect defaultAspect : sortedAspectList) {
+        List<? extends DefaultAspect> filterAspectList = filterAspectList(method, sortedAspectList);
+        for (DefaultAspect defaultAspect : filterAspectList) {
             defaultAspect.before();
         }
         Object returnValue = method.invoke(target, args);
-        List<? extends DefaultAspect> reverseOrderAspectList = sortedAspectList.stream()
+        List<? extends DefaultAspect> reverseOrderAspectList = filterAspectList.stream()
                 .sorted(Comparator.comparingInt(c -> -1 * c.getClass().getAnnotation(Aspect.class).order()))
                 .collect(Collectors.toList());
         for (DefaultAspect defaultAspect : reverseOrderAspectList) {
             defaultAspect.afterReturn();
         }
         return returnValue;
+    }
+
+    private List<? extends DefaultAspect> filterAspectList(Method method, List<? extends DefaultAspect> sortedAspectList) {
+        return sortedAspectList.stream()
+                .filter(v -> v.isMatchMethod(method))
+                .collect(Collectors.toList());
     }
 }

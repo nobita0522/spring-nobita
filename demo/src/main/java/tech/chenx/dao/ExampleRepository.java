@@ -11,8 +11,9 @@ import tech.chenx.core.annotation.Repository;
  */
 @Repository
 @Slf4j
-public class ExampleRepository {
+public class ExampleRepository implements IExampleRepository {
 
+    @Override
     public void show() {
         log.info("ExampleRepository.show()");
     }

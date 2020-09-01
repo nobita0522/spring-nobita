@@ -64,7 +64,7 @@ public class BeanContainer {
         container.put(clazz, bean);
     }
 
-    public static void addBean2Proxy(Class<?> clazz, Object bean) {
+    public static void addProxyBean(Class<?> clazz, Object bean) {
         proxyBeanContainer.put(clazz, bean);
     }
 
@@ -98,12 +98,16 @@ public class BeanContainer {
         log.info("ioc operation has successfully.");
     }
 
+    /**
+     * 检查切面配置，生成相应的动态代理类，放入动态代理bean容器
+     */
     public static void doAop() {
         for (Map.Entry<Class<?>, Object> entry : container.entrySet()) {
             if (needProxy(entry.getKey())) {
-                addBean2Proxy(entry.getKey(), createProxy(entry));
+                addProxyBean(entry.getKey(), createProxy(entry));
             }
         }
+        doIoc();
     }
 
     /**
@@ -111,7 +115,7 @@ public class BeanContainer {
      *
      * @param basePackage
      */
-    public static void scanBeanAndInit(String basePackage) {
+    public static void doBeanScan(String basePackage) {
         URL resource = Thread.currentThread().getContextClassLoader().getResource(basePackage.replace(".", "/"));
         if (Objects.isNull(resource)) {
             throw new RuntimeException("con't locate the package :" + basePackage);
@@ -137,28 +141,30 @@ public class BeanContainer {
      * @return
      */
     private static Object createProxy(Map.Entry<Class<?>, Object> entry) {
-        List<Class<?>> aspectsClasses = new ArrayList<>(getAspectByClass(entry.getKey()));
-        List<DefaultAspect> aspectList = new ArrayList<>();
-        container.forEach((k, v) -> {
-            if (aspectsClasses.contains(k)) {
-                aspectList.add((DefaultAspect) v);
-            }
-        });
-        return DynamicProxyUtil.createDynamicProxy(entry.getValue(), aspectList);
+        List<? extends DefaultAspect> aspectList = getAspectByClass(entry.getKey());
+        Object target = entry.getValue();
+        return DynamicProxyUtil.createDynamicProxy(target, aspectList);
     }
 
     /**
-     * 判断该类是否存在其相关的切面配置
+     * 判断该类是否存在其相应的切面配置
      *
      * @param clazz
      * @return 该类是否存在其相关的切面配置
      */
     private static boolean needProxy(Class<?> clazz) {
-        return !CollectionUtil.isNullOrEmpty(getAspectByClass(clazz));
+        return !clazz.isAnnotationPresent(Aspect.class) && !CollectionUtil.isNullOrEmpty(getAspectByClass(clazz));
     }
 
     public static Set<Class<?>> getClassesByAnnotation(Class<? extends Annotation> annotation) {
         return container.keySet().stream().filter(cla -> cla.isAnnotationPresent(annotation)).collect(Collectors.toSet());
+    }
+
+    public static Set<?> getBeansByAnnotation(Class<? extends Annotation> annotation) {
+        return container.entrySet().stream()
+                .filter(entry -> entry.getKey().isAnnotationPresent(annotation))
+                .map(Map.Entry::getValue)
+                .collect(Collectors.toSet());
     }
 
     /**
@@ -167,8 +173,11 @@ public class BeanContainer {
      * @param clazz
      * @return
      */
-    public static Set<Class<?>> getAspectByClass(Class<?> clazz) {
-        return getClassesByAnnotation(Aspect.class).stream().filter(cla -> clazz.isAnnotationPresent(cla.getAnnotation(Aspect.class).value())).collect(Collectors.toSet());
+    public static List<? extends DefaultAspect> getAspectByClass(Class<?> clazz) {
+        return getBeansByAnnotation(Aspect.class).stream()
+                .map(v -> (DefaultAspect) v)
+                .filter(v -> v.isMatchClass(clazz))
+                .collect(Collectors.toList());
     }
 
     /**

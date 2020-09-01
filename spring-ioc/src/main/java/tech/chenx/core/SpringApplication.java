@@ -15,9 +15,9 @@ public class SpringApplication {
 
     public static void run(Class<?> appClass, String... args) {
         String basePackage = fetchBasePackage(appClass);
-        BeanContainer.scanBeanAndInit(basePackage);
-        BeanContainer.doAop();
+        BeanContainer.doBeanScan(basePackage);
         BeanContainer.doIoc();
+        BeanContainer.doAop();
     }
 
     private static String fetchBasePackage(Class<?> appClass) {

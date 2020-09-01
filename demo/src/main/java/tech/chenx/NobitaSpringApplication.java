@@ -1,6 +1,6 @@
 package tech.chenx;
 
-import tech.chenx.controller.ExampleController;
+import tech.chenx.controller.IExampleController;
 import tech.chenx.core.BeanContainer;
 import tech.chenx.core.SpringApplication;
 import tech.chenx.core.annotation.SpringBootApplication;
@@ -16,7 +16,7 @@ public class NobitaSpringApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(NobitaSpringApplication.class, args);
-        ExampleController bean = BeanContainer.getBean(ExampleController.class);
+        IExampleController bean = BeanContainer.getBean(IExampleController.class);
         bean.show();
     }
 }
