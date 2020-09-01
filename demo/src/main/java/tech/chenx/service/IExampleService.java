@@ -7,4 +7,6 @@ package tech.chenx.service;
  * @description this is description about this file...
  */
 public interface IExampleService {
+
+    void show();
 }

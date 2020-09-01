@@ -12,14 +12,14 @@
     <artifactId>demo</artifactId>
 
     <properties>
-        <tech.chenx.ioc.version>1.0.0</tech.chenx.ioc.version>
+        <spring-ioc.version>1.0.0</spring-ioc.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>tech.chenx</groupId>
             <artifactId>spring-ioc</artifactId>
-            <version>${tech.chenx.ioc.version}</version>
+            <version>${spring-ioc.version}</version>
         </dependency>
     </dependencies>
 </project>

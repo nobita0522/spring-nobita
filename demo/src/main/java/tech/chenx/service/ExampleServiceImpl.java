@@ -1,5 +1,6 @@
 package tech.chenx.service;
 
+import lombok.extern.slf4j.Slf4j;
 import tech.chenx.core.annotation.Autowired;
 import tech.chenx.core.annotation.Service;
 import tech.chenx.dao.ExampleRepository;
@@ -11,8 +12,15 @@ import tech.chenx.dao.ExampleRepository;
  * @description this is description about this file...
  */
 @Service
+@Slf4j
 public class ExampleServiceImpl implements IExampleService {
 
     @Autowired
     private ExampleRepository repository;
+
+    @Override
+    public void show() {
+        log.info("ExampleServiceImpl.show()");
+        repository.show();
+    }
 }

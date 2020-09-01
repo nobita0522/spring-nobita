@@ -1,0 +1,43 @@
+package tech.chenx.core;
+
+import tech.chenx.core.annotation.Aspect;
+
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
+
+/**
+ * @author chenxiong
+ * @email nobita0522@qq.com
+ * @date 2020/9/1 13:04
+ * @description this is description about this file...
+ */
+public class AspectChainInvocationHandler implements InvocationHandler {
+
+    private Object target;
+    private List<? extends DefaultAspect> sortedAspectList;
+
+    public AspectChainInvocationHandler(Object target, List<? extends DefaultAspect> aspectList) {
+        this.target = target;
+        this.sortedAspectList = aspectList.stream()
+                .sorted(Comparator.comparingInt(c -> c.getClass().getAnnotation(Aspect.class).order()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        for (DefaultAspect defaultAspect : sortedAspectList) {
+            defaultAspect.before();
+        }
+        Object returnValue = method.invoke(target, args);
+        List<? extends DefaultAspect> reverseOrderAspectList = sortedAspectList.stream()
+                .sorted(Comparator.comparingInt(c -> -1 * c.getClass().getAnnotation(Aspect.class).order()))
+                .collect(Collectors.toList());
+        for (DefaultAspect defaultAspect : reverseOrderAspectList) {
+            defaultAspect.afterReturn();
+        }
+        return returnValue;
+    }
+}

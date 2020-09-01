@@ -16,6 +16,7 @@ public class NobitaSpringApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(NobitaSpringApplication.class, args);
-        BeanContainer.getBean(ExampleController.class);
+        ExampleController bean = BeanContainer.getBean(ExampleController.class);
+        bean.show();
     }
 }

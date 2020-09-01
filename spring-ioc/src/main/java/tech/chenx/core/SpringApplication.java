@@ -3,6 +3,8 @@ package tech.chenx.core;
 import com.google.common.base.Strings;
 import tech.chenx.core.annotation.SpringBootApplication;
 
+import java.util.Objects;
+
 /**
  * @author chenxiong
  * @email nobita0522@qq.com
@@ -12,12 +14,14 @@ import tech.chenx.core.annotation.SpringBootApplication;
 public class SpringApplication {
 
     public static void run(Class<?> appClass, String... args) {
-        SpringBootApplication annotation = appClass.getAnnotation(SpringBootApplication.class);
-        String basePackage = Strings.isNullOrEmpty(annotation.value()) ? appClass.getPackageName() : annotation.value();
-        if (Strings.isNullOrEmpty(basePackage)) {
-            basePackage = appClass.getPackageName();
-        }
-        BeanContainer.scanBean(basePackage);
+        String basePackage = fetchBasePackage(appClass);
+        BeanContainer.scanBeanAndInit(basePackage);
+        BeanContainer.doAop();
         BeanContainer.doIoc();
+    }
+
+    private static String fetchBasePackage(Class<?> appClass) {
+        SpringBootApplication annotation = appClass.getAnnotation(SpringBootApplication.class);
+        return (Objects.isNull(annotation) || Strings.isNullOrEmpty(annotation.value())) ? appClass.getPackageName() : annotation.value();
     }
 }

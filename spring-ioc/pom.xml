@@ -11,11 +11,21 @@
 
     <artifactId>spring-ioc</artifactId>
 
+    <properties>
+        <spring-util.version>1.0.0</spring-util.version>
+        <spring-aop.version>1.0.0</spring-aop.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>tech.chenx</groupId>
             <artifactId>spring-util</artifactId>
-            <version>1.0.0</version>
+            <version>${spring-util.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>tech.chenx</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring-aop.version}</version>
         </dependency>
     </dependencies>
 

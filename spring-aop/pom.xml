@@ -11,5 +11,29 @@
 
     <artifactId>spring-aop</artifactId>
 
+    <properties>
+        <cglib.version>3.3.0</cglib.version>
+        <aspectj-weaver.version>1.9.6</aspectj-weaver.version>
+        <spring-util.version>1.0.0</spring-util.version>
+    </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>tech.chenx</groupId>
+            <artifactId>spring-util</artifactId>
+            <version>${spring-util.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cglib</groupId>
+            <artifactId>cglib</artifactId>
+            <version>${cglib.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj-weaver.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+
+    </dependencies>
 </project>

@@ -1,5 +1,6 @@
 package tech.chenx.dao;
 
+import lombok.extern.slf4j.Slf4j;
 import tech.chenx.core.annotation.Repository;
 
 /**
@@ -9,5 +10,10 @@ import tech.chenx.core.annotation.Repository;
  * @description this is description about this file...
  */
 @Repository
+@Slf4j
 public class ExampleRepository {
+
+    public void show() {
+        log.info("ExampleRepository.show()");
+    }
 }
