@@ -107,7 +107,6 @@ public class BeanContainer {
                 addProxyBean(entry.getKey(), createProxy(entry));
             }
         }
-        doIoc();
     }
 
     /**
