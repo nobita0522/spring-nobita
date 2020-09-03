@@ -8,7 +8,7 @@ package tech.chenx.controller;
  */
 public interface IExampleController {
 
-    public String show();
+    String show(String param);
 
-    public String show2();
+    String show2(String param);
 }

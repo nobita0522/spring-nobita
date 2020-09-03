@@ -14,4 +14,11 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Controller {
+
+    /**
+     * 请求的映射路径
+     *
+     * @return
+     */
+    String value() default "";
 }

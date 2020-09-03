@@ -99,6 +99,13 @@ public class BeanContainer {
     }
 
     /**
+     *
+     */
+    public static void doMvc() {
+
+    }
+
+    /**
      * 检查切面配置，生成相应的动态代理类，放入动态代理bean容器
      */
     public static void doAop() {

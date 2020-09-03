@@ -1,5 +1,7 @@
 package tech.chenx.core;
 
+import lombok.Getter;
+
 /**
  * @author chenxiong
  * @email nobita0522@qq.com
@@ -7,8 +9,18 @@ package tech.chenx.core;
  * @description this is description about this file...
  */
 public enum RequestMethod {
-    GET,
-    POST,
-    PUT,
-    DELETE
+    GET("GET"),
+    HEAD("HEAD"),
+    POST("POST"),
+    PUT("PUT"),
+    DELETE("DELETE"),
+    OPTIONS("OPTIONS"),
+    TRACE("TRACE");
+
+    @Getter
+    private String value;
+
+    RequestMethod(String value) {
+        this.value = value;
+    }
 }

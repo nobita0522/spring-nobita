@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -29,14 +30,17 @@ public class RequestHandleMapping {
 
     private Method method;
 
-    public boolean isMatch(String mapping) {
-        return this.mapping.equals(mapping);
+    private RequestMethod requestMethod;
+
+    public boolean isMatch(String mapping, String requestMethod) {
+        return this.mapping.equals(mapping) && this.requestMethod.getValue().equalsIgnoreCase(requestMethod);
     }
 
-    private void handle(ServletRequest req, ServletResponse res) {
+    public void handle(ServletRequest req, ServletResponse res) {
         try {
-            method.invoke(controller, ParamUtil.extractParamFromRequest(req, method));
-        } catch (IllegalAccessException | InvocationTargetException e) {
+            Object returnValue = method.invoke(controller, ParamUtil.extractParamFromRequest(req, method));
+            res.getWriter().write(returnValue.toString());
+        } catch (IllegalAccessException | InvocationTargetException | IOException e) {
             log.error("call method [{}] of controller [{}] fail by reflect", method.getName(), controller.getClass().getName());
         }
     }

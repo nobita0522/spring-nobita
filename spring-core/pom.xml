@@ -9,18 +9,17 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>demo</artifactId>
+    <artifactId>spring-core</artifactId>
 
     <properties>
-        <spring-core.version>1.0.0</spring-core.version>
+        <spring-mvc.version>1.0.0</spring-mvc.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>tech.chenx</groupId>
-            <artifactId>spring-core</artifactId>
-            <version>${spring-core.version}</version>
+            <artifactId>spring-mvc</artifactId>
+            <version>${spring-mvc.version}</version>
         </dependency>
     </dependencies>
-
 </project>

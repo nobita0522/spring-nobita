@@ -18,6 +18,7 @@ public class SpringApplication {
         BeanContainer.doBeanScan(basePackage);
         BeanContainer.doAop();
         BeanContainer.doIoc();
+        SpringMVCContext.doMvc();
     }
 
     private static String fetchBasePackage(Class<?> appClass) {
