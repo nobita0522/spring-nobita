@@ -15,8 +15,11 @@ import tech.chenx.core.annotation.SpringBootApplication;
 public class NobitaSpringApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NobitaSpringApplication.class, args);
-        IExampleController bean = BeanContainer.getBean(IExampleController.class);
-        bean.show();
+//        SpringApplication.run(NobitaSpringApplication.class, args);
+//        IExampleController bean = BeanContainer.getBean(IExampleController.class);
+//        bean.show();
+
+
+
     }
 }

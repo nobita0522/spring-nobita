@@ -10,16 +10,34 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>demo</artifactId>
+    <packaging>war</packaging>
 
     <properties>
         <spring-ioc.version>1.0.0</spring-ioc.version>
+        <spring-mvc.version>1.0.0</spring-mvc.version>
     </properties>
 
     <dependencies>
         <dependency>
             <groupId>tech.chenx</groupId>
-            <artifactId>spring-ioc</artifactId>
-            <version>${spring-ioc.version}</version>
+            <artifactId>spring-mvc</artifactId>
+            <version>${spring-mvc.version}</version>
         </dependency>
     </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat7-maven-plugin</artifactId>
+                    <version>2.2</version>
+                    <configuration>
+                        <port>80</port> <!-- 访问端口-->
+                        <path>/</path>    <!-- 访问路径-->
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>

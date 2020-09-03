@@ -11,5 +11,40 @@
 
     <artifactId>spring-mvc</artifactId>
 
+    <properties>
+        <javax.servlet.version>4.0.1</javax.servlet.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-ioc.version>1.0.0</spring-ioc.version>
+        <tomcat.version>8.0.48</tomcat.version>
+    </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${javax.servlet.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-core</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-jasper</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tomcat.embed</groupId>
+            <artifactId>tomcat-embed-logging-juli</artifactId>
+            <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>tech.chenx</groupId>
+            <artifactId>spring-ioc</artifactId>
+            <version>${spring-ioc.version}</version>
+        </dependency>
+
+    </dependencies>
 </project>
