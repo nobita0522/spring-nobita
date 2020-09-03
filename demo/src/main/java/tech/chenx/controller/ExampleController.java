@@ -27,6 +27,7 @@ public class ExampleController implements IExampleController {
     @Override
     @RequestMapping(value = "/b", method = RequestMethod.GET)
     public String show(String param) {
+        log.info("the receive param is [{}]", param);
         log.info("ExampleController.show()");
         service.show();
         return "controller show method";
@@ -35,6 +36,7 @@ public class ExampleController implements IExampleController {
     @Override
     @RequestMapping(value = "/c", method = RequestMethod.POST)
     public String show2(String param) {
+        log.info("the receive param is [{}]", param);
         log.info("ExampleController.show()");
         service.show();
         return "controller show method";
