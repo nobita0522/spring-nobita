@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
  * @author chenxiong
  * @email nobita0522@qq.com
  * @date 2020/8/31 17:06
- * @description this is description about this file...
+ * @description 通用的切面定义，所有的切面均需要继承该类
  */
 public abstract class DefaultAspect {
 

@@ -12,9 +12,9 @@ import tech.chenx.service.IExampleService;
  * @author chenxiong
  * @email nobita0522@qq.com
  * @date 2020/8/28 16:02
- * @description 因为未做动态判断采用jdk动态代理还是cglib，为了防止错误，这里controller也继承了接口为了兼容jdk动态代码
+ * @description 因为未做动态判断采用jdk动态代理还是cglib，为了防止错误，这里controller也继承了接口为了兼容jdk动态代理
  */
-@Controller("/a")
+@Controller("/example")
 @Slf4j
 public class ExampleController implements IExampleController {
 
@@ -25,7 +25,7 @@ public class ExampleController implements IExampleController {
     private IExampleRepository repository;
 
     @Override
-    @RequestMapping(value = "/b", method = RequestMethod.GET)
+    @RequestMapping(value = "/show", method = RequestMethod.GET)
     public String show(String param) {
         log.info("the receive param is [{}]", param);
         log.info("ExampleController.show()");
@@ -34,10 +34,10 @@ public class ExampleController implements IExampleController {
     }
 
     @Override
-    @RequestMapping(value = "/c", method = RequestMethod.POST)
+    @RequestMapping(value = "/show2", method = RequestMethod.POST)
     public String show2(String param) {
         log.info("the receive param is [{}]", param);
-        log.info("ExampleController.show()");
+        log.info("ExampleController.show2()");
         service.show();
         return "controller show method";
     }

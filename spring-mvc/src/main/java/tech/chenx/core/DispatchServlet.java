@@ -13,7 +13,7 @@ import java.util.Set;
  * @author chenxiong
  * @email nobita0522@qq.com
  * @date 2020/9/3 13:49
- * @description this is description about this file...
+ * @description 全局唯一的分发servlet，实现请求到controller的method映射
  */
 public class DispatchServlet extends HttpServlet {
 

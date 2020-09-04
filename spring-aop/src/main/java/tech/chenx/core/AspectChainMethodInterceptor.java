@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  * @author chenxiong
  * @email nobita0522@qq.com
  * @date 2020/8/31 18:10
- * @description this is description about this file...
+ * @description cglib 动态代理的 methodInterceptor
  */
 public class AspectChainMethodInterceptor implements MethodInterceptor {
 

@@ -21,6 +21,11 @@ public class SpringApplication {
         SpringMVCContext.doMvc();
     }
 
+    /**
+     * 获取扫描包的位置
+     * @param appClass
+     * @return
+     */
     private static String fetchBasePackage(Class<?> appClass) {
         SpringBootApplication annotation = appClass.getAnnotation(SpringBootApplication.class);
         return (Objects.isNull(annotation) || Strings.isNullOrEmpty(annotation.value())) ? appClass.getPackageName() : annotation.value();

@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
  * @author chenxiong
  * @email nobita0522@qq.com
  * @date 2020/9/1 13:04
- * @description this is description about this file...
+ * @description jdk动态代理的 invocationHandler
  */
 public class AspectChainInvocationHandler implements InvocationHandler {
 

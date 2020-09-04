@@ -1,5 +1,6 @@
 package tech.chenx.core;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
@@ -19,6 +20,7 @@ import java.lang.reflect.Method;
 @Getter
 @Setter
 @Slf4j
+@EqualsAndHashCode
 public class RequestHandleMapping {
 
     /**

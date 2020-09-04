@@ -95,7 +95,7 @@ public class BeanContainer {
                 }
             }
         }
-        log.info("ioc operation has successfully.");
+        log.info("do ioc operation successfully.");
     }
 
     /**
