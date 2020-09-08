@@ -25,17 +25,33 @@ public class RequestHandleMapping {
      * 响应的路径
      */
     private String mapping;
-
+    /**
+     * 对应的Controller
+     */
     private Object controller;
-
+    /**
+     * 对应的处理方法
+     */
     private Method method;
-
+    /**
+     * 请求方法
+     */
     private RequestMethod requestMethod;
-
+    /**
+     * 是否匹配该请求
+     * @param mapping
+     * @param requestMethod
+     * @return
+     */
     public boolean isMatch(String mapping, String requestMethod) {
         return this.mapping.equals(mapping) && this.requestMethod.getValue().equalsIgnoreCase(requestMethod);
     }
 
+    /**
+     * 处理请求
+     * @param req
+     * @param res
+     */
     public void handle(ServletRequest req, ServletResponse res) {
         try {
             Object returnValue = method.invoke(controller, ParamUtil.extractParamFromRequest(req, method));

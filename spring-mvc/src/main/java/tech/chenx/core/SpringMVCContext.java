@@ -101,6 +101,11 @@ public class SpringMVCContext {
         throw new RuntimeException("unsupported method for generate handelMapping");
     }
 
+    /**
+     * 格式化路径 使其最后创建的最终路径为 /xxx/xxx
+     * @param path
+     * @return
+     */
     public static String formatUrlPath(String path) {
         StringBuilder sb = new StringBuilder();
         if (!Strings.isNullOrEmpty(path)) {
