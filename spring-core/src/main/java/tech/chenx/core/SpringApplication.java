@@ -23,6 +23,7 @@ public class SpringApplication {
 
     /**
      * 获取扫描包的位置
+     *
      * @param appClass
      * @return
      */
