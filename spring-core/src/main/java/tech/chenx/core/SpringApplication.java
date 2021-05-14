@@ -28,6 +28,6 @@ public class SpringApplication {
      */
     private static String fetchBasePackage(Class<?> appClass) {
         SpringBootApplication annotation = appClass.getAnnotation(SpringBootApplication.class);
-        return (Objects.isNull(annotation) || Strings.isNullOrEmpty(annotation.value())) ? appClass.getPackageName() : annotation.value();
+        return (Objects.isNull(annotation) || Strings.isNullOrEmpty(annotation.value())) ? appClass.getPackage().getName() : annotation.value();
     }
 }
